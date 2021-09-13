@@ -35,8 +35,6 @@ services:
       - NAME=db_service
     networks: 
       - lb_portal
-    ports: 
-      - 3306:3306
 
 volumes: 
   volume_db_service:
