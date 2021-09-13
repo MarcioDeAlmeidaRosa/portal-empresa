@@ -1,0 +1,48 @@
+version: '3.9'
+
+services: 
+  
+  portal_web_service:
+    image: wordpress:5.8.1-php7.4
+    hostname: portal_web_service
+    volumes: 
+      - volume_portal_service:/var/www/html
+    environment: 
+      - WORDPRESS_DB_HOST=db_service
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=minhaSenhaVaiAqui
+      - WORDPRESS_DB_NAME=db_portal
+      - WORDPRESS_TABLE_PREFIX=wp_emp_
+      - H=portal_web_service
+    labels: 
+      - NAME=portal_web_service
+    networks: 
+      - lb_portal
+    ports: 
+      - 8055:80
+    depends_on: 
+      - db_service
+
+  db_service:
+    image: mysql:5.7
+    hostname: db_service
+    volumes: 
+      - volume_db_service:/var/lib/mysql
+    environment: 
+      - MYSQL_DATABASE=db_portal
+      - MYSQL_ROOT_PASSWORD=minhaSenhaVaiAqui
+    labels: 
+      - NAME=db_service
+    networks: 
+      - lb_portal
+    ports: 
+      - 3306:3306
+
+volumes: 
+  volume_db_service:
+
+  volume_portal_service: 
+
+networks: 
+  lb_portal:
+    driver: bridge
