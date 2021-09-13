@@ -19,7 +19,7 @@ services:
     networks: 
       - lb_portal
     ports: 
-      - 8055:80
+      - 8077:80
     depends_on: 
       - db_service
 
