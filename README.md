@@ -1,4 +1,4 @@
-# Portal Institucioonal
+# Portal Institucional
 Solução para subida do Portal institucional
 
 ## Executar solução
